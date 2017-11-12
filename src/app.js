@@ -3,6 +3,8 @@ import React from "react";
 import {render} from "react-dom";
 import {Provider} from "react-redux";
 
+import BookList from "./containers/bookList";
+
 import {createStore, applyMiddleware, compose} from "redux";
 import logger from "redux-logger";
 
@@ -17,6 +19,6 @@ const store = createStore(
 
 render(
     <Provider store={store}>
-        <BooksList />
+        <BookList />
     </ Provider>, document.getElementById("app")
 );

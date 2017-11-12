@@ -1,0 +1,20 @@
+import React from "react";
+import {Well, Row, Col} from "react-bootstrap";
+
+class BookItem extends React.Component {
+    render() {
+        return (
+            <Well>
+                <Row>
+                    <Col xs={12}>
+                        <h6>{this.props.title}</h6>
+                        <p>{this.props.description}</p>
+                        <h6>usd. {this.props.price}</h6>
+                    </Col>
+                </Row>
+            </Well>
+        );
+    }
+} 
+
+export default BookItem;

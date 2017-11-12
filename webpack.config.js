@@ -1,21 +1,23 @@
 const path = require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const WebpackShellPlugin = require("webpack-shell-plugin");
 
 module.exports = {
     entry: ["./src/app.js", "./src/scss/main.scss"],
     output: {
         filename: "bundle.js",
-        path: path.resolve(__dirname, "public")
+        path: path.resolve(__dirname, "public/build")
     },
+    devtool: "eval-cheap-module-source-map",
     watch: true,
     module: {
         loaders: [
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 loader: "babel-loader",
                 query: {
-                    presets: ["react", "es2015", "stage-1"]
+                    presets: ["es2015", "react", "stage-1"]
                 }
             },
             {
@@ -42,6 +44,9 @@ module.exports = {
         new ExtractTextPlugin({ // define where to save the file
             filename: "[name].bundle.css",
             allChunks: true
+        }),
+        new WebpackShellPlugin({
+            onBuildEnd: ["nodemon server.js"]
         })
     ]
 };
